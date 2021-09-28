@@ -11,7 +11,7 @@ let bgColor = 0;
 let boxColor02 = 254;
 
 let circle01 = {
-action: rotatecircle,
+action:rotatecircle,
 posx: 100,
 posy:-200,
 translatex:300-100, translatey:185+200,
@@ -117,11 +117,13 @@ let rect11 = {
 let shapeArray = [circle01,backrect,rectbottom,recttop,rect01,rect02,rect03,rect04,rect05,rect06,rect07,rect08,rect09,rect10,rect11 ]
 
 function setup() {
+song=loadSound('clock-ticking-5.mp3');
 createCanvas(600, 600);
 rectMode(CENTER)
 ellipseMode(CENTER)
 noStroke();
 angleMode(DEGREES);
+
 
 }
 
@@ -131,14 +133,6 @@ background(000);
 for (let i = 0; i < shapeArray.length; i++) {
 drawshape(shapeArray[i]);
 }
-
-// rotatecircle(circle01);
-// rotaterect(backrect)
-// rotaterect(rectbottom);
-//
-// rotaterect(recttop)
-// colorchange(recttop)
-// scalerect(rect05)
 
 
 }
@@ -150,8 +144,6 @@ function drawshape(geometry){
   if(geometry.action === scalerect){scalerect(geometry)}
   if(geometry.action === rotatedrect){rotatedrect(geometry)}
   if(geometry.action === draw){drawrect(geometry)}
-
-
 
 
 }
@@ -240,13 +232,18 @@ function scalerect(geometry) {
     geometry.button_y = geometry.button_y + growth;
   rect(geometry.posx, geometry.posy, geometry.button_x, geometry.button_y,geometry.topleft,geometry.topright,geometry.bottomright,geometry.bottomleft);
 
-
-
   // if(geometry.button_x===geometry.width){geometry.button_x=geometry.width}
   // if(geometry.button_y===geometry.height){geometry.button_x=geometry.width}
 }
 
-
+function mousePressed() {
+  if (angle=0) {
+    song.stop();
+  } else {
+    song.play();
+    background(255);
+  }
+}
 
 
 
